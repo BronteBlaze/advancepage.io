@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://use.fontawesome.com/c1a8cbb134.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.10.2/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css"/>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
+    <!-- <link rel="stylesheet" href="css/animate.css"> -->
+    <!-- <script src="js/wow.min.js"></script> -->
+    <!-- <script>new WOW().init();</script> -->
+    <style>
+        body {
+            font-family: 'Raleway', sans-serif;
+        }
+        .animate__animated.animate__fadeInUp {
+            --animate-duration: 0.3s;
+        }
+        .animate__animated.animate__slideInRight {
+            --animate-duration: 0.6s;
+        }
+        .animate__animated.animate__slideInLeft {
+            --animate-duration: 0.4s;
+        }
+        .header {
+            background-image: url('https://bootstrapmade.com/demo/templates/Scaffold/assets/img/hero-bg.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: right top;
+        }
+        .call {
+            background-image: linear-gradient(to right, rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('https://bootstrapmade.com/demo/templates/Scaffold/assets/img/cta-bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        .teams {
+            background-image: linear-gradient(to right, rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('https://bootstrapmade.com/demo/templates/Scaffold/assets/img/team-bg.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border: 1px solid skyblue;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section, Home and Navbar design -->
+    <div>
+        <div class="lg:flex hidden bg-white items-center justify-between fixed w-full xl:px-28 lg:px-20 py-5 mt-3 z-50" id="pcnav">
+            <ul>
+                <div class="text-3xl font-semibold text-gray-600"><li><h4>Scaffold</h4></li></div>
+            </ul>
+            <ul class="flex text-gray-700 items-center">
+                <div class="px-4 hover:text-blue-400"><li><a href="#home">Home</a></li></div>
+
+                <!-- DropDownMenu Using Alpine JS -->
+                <div class="px-4" x-data="{open: false, toggle() {return this.open = !this.open}}" id="hover-item">
+                    <div><li @mouseover="toggle()" class="hover:text-blue-400 cursor-pointer">About<i class="fa fa-angle-down px-2"></i></li></div>
+                    <div x-show="open" @mouseover.outside="open=false" class="fixed bg-white shadow-lg w-48 h-40 pt-6 animate__animated animate__fadeInUp" id="anime">
+                        <li><a href="#about" class="mx-6 hover:text-blue-400">About Us</a></li>
+                        <li class="pt-5"><a href="#team" class="mx-6 hover:text-blue-400">Team</a></li>
+                        <li class="pt-5"><a href="#testi" class="mx-6 hover:text-blue-400">Testimonials</a></li>    
+                    </div>
+                </div>
+    
+                <div class="px-4"><li><a href="#services" class="hover:text-blue-400">Services</a></li></div>
+                <div class="px-4"><li><a href="#portfolio" class="hover:text-blue-400">Portfolio</a></li></div>
+                <div class="px-4"><li><a href="#price" class="hover:text-blue-400">Pricing</a></li></div>
+                <div class="px-4"><li><a href="#contact" class="hover:text-blue-400">Contact</a></li></div>
+    
+                
+                <div class="flex px-4">
+                    <div class="px-1"><li><a href="#" class="hover:text-blue-400"><i class="fa fa-twitter"></i></a></li></div>
+                    <div class="px-1"><li><a href="#" class="hover:text-blue-400"><i class="fa fa-facebook"></i></a></li></div>
+                    <div class="px-1"><li><a href="#" class="hover:text-blue-400"><i class="fa fa-instagram"></i></a></li></div>
+                    <div class="px-1"><li><a href="#" class="hover:text-blue-400"><i class="fa fa-linkedin"></i></a></li></div>
+                </div>   
+            </ul>
+        </div>
+    </div>
+
+    <!-- Header for Small Devices -->
+    <div class="flex lg:hidden items-center justify-between px-4 fixed z-50 w-full h-16 bg-white shadow-md md:px-10">
+        <div class="text-3xl font-semibold text-gray-600"><h4>Scaffold</h4></div>
+        <div class="grid grid-cols-2 place-items-center">
+            <div class="text-xl text-gray-600">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+            </div>
+            <div class="text-3xl text-gray-600 place-self-end"><i class="fa fa-bars" id="bar"></i></div>
+        </div>
+    </div>
+
+    <!-- Small Devices Navbar -->
+    <div class="flex lg:hidden justify-center fixed z-50 mt-16 hidden animate__animated animate__slideInLeft" id="mob-nav">
+        <div class="bg-white z-50 w-72 h-screen px-4" id="pcnav">
+            <ul class="text-gray-700 block">
+                <div class="flex justify-between">
+                    <div class="px-4 py-3"><li><a href="#home" onclick="document.getElementById('mob-nav').classList.add('hidden')">Home</a></li></div>
+                    <div class="text-gray-500 text-3xl mx-4 mt-1 border px-3"><i class="fa fa-times" id="cancel"></i></div>
+                </div>
+
+                <!-- DropDownMenu Using Alpine JS -->
+                <div class="px-4 py-3" x-data="{open: false, toggle() {return this.open = ! this.open}}" id="hover-item">
+                    <div><li @mouseover="toggle()" class="hover:text-blue-400">About<i class="fa fa-angle-down px-2"></i></li></div>
+                    <div x-show="open" @mouseover.outside="open=false" class="fixed bg-white shadow-lg w-48 h-40 pt-6 animate__animated animate__fadeInUp" id="anime">
+                        <li><a href="#about" class="mx-6 hover:text-blue-400" onclick="document.getElementById('mob-nav').classList.add('hidden')">About Us</a></li>
+                        <li class="pt-5"><a href="#team" class="mx-6 hover:text-blue-400" onclick="document.getElementById('mob-nav').classList.add('hidden')">Team</a></li>
+                        <li class="pt-5"><a href="#testi" class="mx-6 hover:text-blue-400" onclick="document.getElementById('mob-nav').classList.add('hidden')">Testimonials</a></li>    
+                    </div>
+                </div>
+    
+                <div class="px-4 py-3"><li><a href="#services" class="hover:text-blue-400" onclick="document.getElementById('mob-nav').classList.add('hidden')">Services</a></li></div>
+                <div class="px-4 py-3"><li><a href="#portfolio" class="hover:text-blue-400" onclick="document.getElementById('mob-nav').classList.add('hidden')">Portfolio</a></li></div>
+                <div class="px-4 py-3"><li><a href="#price" class="hover:text-blue-400" onclick="document.getElementById('mob-nav').classList.add('hidden')">Pricing</a></li></div>
+                <div class="px-4 py-3"><li><a href="#contact" class="hover:text-blue-400" onclick="document.getElementById('mob-nav').classList.add('hidden')">Contact</a></li></div>
+    
+                
+                <div class="flex px-4 py-3">
+                    <div class="px-1"><li><a href="#" class="hover:text-blue-400"><i class="fa fa-twitter"></i></a></li></div>
+                    <div class="px-1"><li><a href="#" class="hover:text-blue-400"><i class="fa fa-facebook"></i></a></li></div>
+                    <div class="px-1"><li><a href="#" class="hover:text-blue-400"><i class="fa fa-instagram"></i></a></li></div>
+                    <div class="px-1"><li><a href="#" class="hover:text-blue-400"><i class="fa fa-linkedin"></i></a></li></div>
+                </div>   
+            </ul>
+        </div>
+    </div>
+
+    <div id="home" class="grid md:grid-cols-2 lg:place-items-center lg:-mt-4 lg:pt-28 pt-28 md:pt-36 xl:px-28 lg:px-20 px-4 md:px-8 header md:h-screen">
+        <div class="wow fadeInUp" data-wow-duration="1.5s">
+            <div class="text-5xl text-gray-800 font-extrabold"><h1>We design digital products that help grow businesses</h1></div>
+            <div class="text-2xl mt-6">We are team of talented designers making websites with Tailwind</div>
+            <div class="mt-6"><button type="button" class="px-8 py-3 bg-sky-500 text-white text-sm font-semibold hover:bg-sky-600 transition duration-500 ease-in-out">GET STARTED</button></div>
+        </div>
+        <div class="wow fadeInRight mt-10 text-center" data-wow-duration="1.5s"><img width="450" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/hero-img.png" alt="photo"></div>
+    </div>
+
+    <!-- Learn more about us -->
+    <div id="about" class="pt-10 lg:pt-auto">
+        <div class="bg-gray-50 xl:mx-28 lg:mx-20">
+            <div class="grid xl:grid-cols-2 py-16 lg:px-12 px-6 gap-8 text-gray-800">
+                <div class="wow zoomIn"><img src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/about.jpg" alt="learning-image"></div>
+                <div class="break-all">
+                    <div class="text-3xl font-semibold"><h2>Learn more about us</h2></div>
+                    <div class="mt-2"><i>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</i></div>
+                    <div class="mt-6">
+                        <ul>
+                            <li class="mt-4"><i class="fa fa-check text-green-600 rounded-full p-0.5 border-2 border-green-600 mx-1"></i>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                            <li class="mt-4"><i class="fa fa-check text-green-600 rounded-full p-0.5 border-2 border-green-600 mx-1"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+                            <li class="mt-4"><i class="fa fa-check text-green-600 rounded-full p-0.5 border-2 border-green-600 mx-1"></i>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperd</li>
+                        </ul>
+                    </div>
+                    <div class="mt-6"><p>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate tera noden carma palorp mades tera.</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="grid lg:grid-cols-2 xl:px-28 lg:px-20 px-6 mt-12">
+            <div>
+                <ul>
+                    <li class="bg-gray-50 py-6 px-6 border-l-4 border-sky-500 cursor-pointer" id="cc-img">
+                        <h4 class="font-semibold text-lg text-sky-500">Modi sit est</h4>
+                        <p class="text-sm">Quis excepturi porro totam sint earum quo nulla perspiciatis eius.</p>
+                    </li>
+                    <li class="bg-gray-50 py-6 px-6 border-l-4 border-gray-100 mt-2 hover:border-gray-300 transition duration-500 cursor-pointer" id="c-img">
+                        <h4 class="font-semibold text-lg text-gray-500">Unde praesentium sed</h4>
+                        <p class="text-sm">Voluptas vel esse repudiandae quo excepturi.</p>
+                    </li>
+                    <li class="bg-gray-50 py-6 px-6 border-l-4 border-gray-100 mt-2 hover:border-gray-300 transition duration-500 cursor-pointer" id="c-img1">
+                        <h4 class="font-semibold text-lg text-gray-500">Pariatur explicabo vel</h4>
+                        <p class="text-sm">Velit veniam ipsa sit nihil blanditiis mollitia natus.</p>
+                    </li>
+                    <li class="bg-gray-50 py-6 px-6 border-l-4 border-gray-100 mt-2 hover:border-gray-300 transition duration-500 cursor-pointer" id="c-img2">
+                        <h4 class="font-semibold text-lg text-gray-500">Nostrum qui quasi</h4>
+                        <p class="text-sm">Ratione hic sapiente nostrum doloremque illum nulla praesentium id</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex justify-center"><img class="lg:mx-40 pt-12 lg:pt-0" id="change-img" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/features-1.png" alt="photo-here"></div>
+        </div>
+    </div>
+    <!-- Services -->
+    <div id="services" class="bg-gray-50 xl:px-28 lg:px-20 lg:mt-16 mt-12 px-6 md:px-8">
+        <div class="text-center text-gray-600 pt-20">
+            <h1 class="text-3xl font-semibold">Services</h1>
+            <p class="mt-4">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+        <div>
+            <div class="grid lg:grid-cols-4 md:grid-cols-2 mt-8 gap-6 pb-16">
+                <div class="bg-white text-center py-6 px-2 shadow-lg transition duration-500 border-b-2 border-white hover:-translate-y-2 hover:border-b-2 hover:border-rose-600">
+                    <div class="text-rose-600 text-5xl"><i class="fa fa-globe"></i></div>
+                    <div class="font-bold text-lg mt-2"><h4>Lorem Ipsum</h4></div>
+                    <div class="mt-4">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate</div>
+                </div>
+                <div class="bg-white text-center py-6 px-2 shadow-lg transition duration-500 border-b-2 border-white hover:-translate-y-2 hover:border-b-2 hover:border-indigo-600">
+                    <div class="text-indigo-600 text-5xl"><i class="fa fa-file-text-o"></i></div>
+                    <div class="font-bold text-lg mt-2"><h4>Sed ut perspiciatis</h4></div>
+                    <div class="mt-4">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nullae</div>
+                </div>
+                <div class="bg-white text-center py-6 px-2 shadow-lg transition duration-500 border-b-2 border-white hover:-translate-y-2 hover:border-b-2 hover:border-green-600">
+                    <div class="text-green-600 text-5xl"><i class="fa fa-dashboard"></i></div>
+                    <div class="font-bold text-lg mt-2"><h4>Magni Dolores</h4></div>
+                    <div class="mt-4">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim</div>
+                </div>
+                <div class="bg-white text-center py-6 px-2 shadow-lg transition duration-500 border-b-2 border-white hover:-translate-y-2 hover:border-b-2 hover:border-blue-600">
+                    <div class="text-blue-600 text-5xl"><i class="fa fa-gears"></i></div>
+                    <div class="font-bold text-lg mt-2"><h4>Nemo Enim</h4></div>
+                    <div class="mt-4">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Portfolio -->
+    <div id="portfolio" class="lg:px-28 px-6 md:px-8">
+        <div class="text-center text-gray-600 pt-20">
+            <h1 class="text-3xl font-semibold">Portfolio</h1>
+            <p class="mt-4">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+        <div>
+            <div class="grid lg:grid-cols-3 md:grid-cols-2 mt-16 gap-6">
+                <div class="overflow-hidden"><a href="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/portfolio/portfolio-1.jpg" data-fancybox="gallery"><img class="hover:scale-110 transition duration-500 ease-in-out" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/portfolio/portfolio-1.jpg"></a></div>
+                <div class="overflow-hidden"><a href="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/portfolio/portfolio-2.jpg" data-fancybox="gallery"><img class="hover:scale-110 transition duration-500 ease-in-out" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/portfolio/portfolio-2.jpg"></a></div>
+                <div class="overflow-hidden"><a href="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/portfolio/portfolio-3.jpg" data-fancybox="gallery"><img class="hover:scale-110 transition duration-500 ease-in-out" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/portfolio/portfolio-3.jpg"></a></div>
+                <div class="overflow-hidden"><a href="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/portfolio/portfolio-4.jpg" data-fancybox="gallery"><img class="hover:scale-110 transition duration-500 ease-in-out" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/portfolio/portfolio-4.jpg"></a></div>
+                <div class="overflow-hidden"><a href="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/portfolio/portfolio-5.jpg" data-fancybox="gallery"><img class="hover:scale-110 transition duration-500 ease-in-out" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/portfolio/portfolio-5.jpg"></a></div>
+                <div class="overflow-hidden"><a href="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/portfolio/portfolio-6.jpg" data-fancybox="gallery"><img class="hover:scale-110 transition duration-500 ease-in-out" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/portfolio/portfolio-6.jpg"></a></div>
+                <div class="overflow-hidden"><a href="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/portfolio/portfolio-7.jpg" data-fancybox="gallery"><img class="hover:scale-110 transition duration-500 ease-in-out" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/portfolio/portfolio-7.jpg"></a></div>
+                <div class="overflow-hidden"><a href="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/portfolio/portfolio-8.jpg" data-fancybox="gallery"><img class="hover:scale-110 transition duration-500 ease-in-out" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/portfolio/portfolio-8.jpg"></a></div>
+                <div class="overflow-hidden"><a href="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/portfolio/portfolio-9.jpg" data-fancybox="gallery"><img class="hover:scale-110 transition duration-500 ease-in-out" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/portfolio/portfolio-9.jpg"></a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to actions -->
+    <div class="call lg:px-28 mt-12 py-20 px-6 text-center lg:text-left">
+        <div class="lg:flex justify-between items-center">
+            <div class="lg:w-9/12 break-all">
+                <div class="text-2xl font-bold"><h2>Call To Action</h2></div>
+                <div class="mt-2"><p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p></div>
+            </div>
+            <div class="mt-6">
+                <a href="#"><button type="button" class="rounded-md px-8 py-3 bg-sky-500 text-white text-sm font-semibold hover:bg-sky-600 transition duration-500 ease-in-out whitespace-nowrap">Call To Action</button></a>
+            </div>
+        </div>
+    </div>
+
+    <!--Testimonials-->
+    <div id="testi" class="xl:px-28 lg:px-20 px-6 md:px-8">
+        <div class="text-center text-gray-600 pt-20">
+            <h1 class="text-3xl font-semibold">Testimonials</h1>
+            <p class="mt-4">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+        <div class="swiper mt-12">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="bg-gray-100 inline-block px-4 pt-6 py-16 md:mx-2">
+                        <p class="lg:w-96 break-all"><i class="fa fa-quote-left px-4 text-xl text-gray-300"></i><i>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.</i><i class="fa fa-quote-right px-4 text-xl text-gray-300"></i></p>
+                    </div>
+                    <div class="w-20 mx-6 -mt-10">
+                        <img class="rounded-full border-4 border-gray-200" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/testimonials/testimonials-1.jpg" alt="employer-photo">
+                    </div>
+                    <div class="mx-6 mt-4">
+                        <h4 class="text-lg font-semibold">Saul Goodman</h4>
+                        <p class="text-sm text-gray-600">Ceo & Founder</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="bg-gray-100 inline-block px-4 pt-6 py-16 md:mx-2">
+                        <p class="lg:w-96 break-all"><i class="fa fa-quote-left px-4 text-xl text-gray-300"></i><i> Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</i><i class="fa fa-quote-right px-4 text-xl text-gray-300"></i></p>
+                    </div>
+                    <div class="w-20 mx-6 -mt-10">
+                        <img class="rounded-full border-4 border-gray-200" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/testimonials/testimonials-2.jpg" alt="employer-photo">
+                    </div>
+                    <div class="mx-6 mt-4">
+                        <h4 class="text-lg font-semibold">Saul Goodman</h4>
+                        <p class="text-sm text-gray-600">Ceo & Founder</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="bg-gray-100 inline-block px-4 pt-6 py-16 md:mx-2">
+                        <p class="lg:w-96 break-all"><i class="fa fa-quote-left px-4 text-xl text-gray-300"></i><i> Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.</i><i class="fa fa-quote-right px-4 text-xl text-gray-300"></i></p>
+                    </div>
+                    <div class="w-20 mx-6 -mt-10">
+                        <img class="rounded-full border-4 border-gray-200" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/testimonials/testimonials-3.jpg" alt="employer-photo">
+                    </div>
+                    <div class="mx-6 mt-4">
+                        <h4 class="text-lg font-semibold">Saul Goodman</h4>
+                        <p class="text-sm text-gray-600">Ceo & Founder</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="bg-gray-100 inline-block px-4 pt-6 py-10 md:mx-2">
+                        <p class="lg:w-96 break-all"><i class="fa fa-quote-left px-4 text-xl text-gray-300"></i><i> Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.</i><i class="fa fa-quote-right px-4 text-xl text-gray-300"></i></p>
+                    </div>
+                    <div class="w-20 mx-6 -mt-10">
+                        <img class="rounded-full border-4 border-gray-200" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/testimonials/testimonials-4.jpg" alt="employer-photo">
+                    </div>
+                    <div class="mx-6 mt-4">
+                        <h4 class="text-lg font-semibold">Saul Goodman</h4>
+                        <p class="text-sm text-gray-600">Ceo & Founder</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="bg-gray-100 inline-block px-4 pt-6 py-10 md:mx-2">
+                        <p class="lg:w-96 break-all"><i class="fa fa-quote-left px-4 text-xl text-gray-300"></i><i> Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid. </i><i class="fa fa-quote-right px-4 text-xl text-gray-300"></i></p>
+                    </div>
+                    <div class="w-20 mx-6 -mt-10">
+                        <img class="rounded-full border-4 border-gray-200" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/testimonials/testimonials-5.jpg" alt="employer-photo">
+                    </div>
+                    <div class="mx-6 mt-4">
+                        <h4 class="text-lg font-semibold">Saul Goodman</h4>
+                        <p class="text-sm text-gray-600">Ceo & Founder</p>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+    <!--Teams -->
+    <div id="team" class="mt-12 xl:px-28 lg:px-20 bg-gray-100 teams px-6">
+        <div class="text-center text-gray-600 pt-20">
+            <h1 class="text-3xl font-semibold">Team</h1>
+            <p class="mt-4">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+        <div class="lg:py-28 py-12">
+            <div class="grid xl:grid-cols-3 xl:gap-6 lg:gap-24 gap-10">
+                <div x-data="{open:false}">
+                    <div class="flex justify-center relative overflow-hidden hoverimage" @mouseover="open=true" @mouseover.outside="open=false">
+                        <img src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/team/team-1.jpg">
+                            <div class="absolute top-4 right-4 hoverlink animate__animated animate__slideInRight" x-show="open">
+                                <div class="py-1"><div class="text-gray-500 text-2xl bg-gray-200 px-2 py-1 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500"><a href="#"><i class="fa fa-twitter"></i></a></div></div>
+                                <div class="py-1"><div class="text-gray-500 text-2xl bg-gray-200 px-3 py-1 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500"><a href="#"><i class="fa fa-facebook"></i></a></div></div>
+                                <div class="py-1"><div class="text-gray-500 text-2xl bg-gray-200 px-2 py-1 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500"><a href="#"><i class="fa fa-instagram"></i></a></div></div>
+                                <div class="py-1"><div class="text-gray-500 text-2xl bg-gray-200 px-2 py-1 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500"><a href="#"><i class="fa fa-skype"></i></a></div></div>
+                                <div class="py-1"><div class="text-gray-500 text-2xl bg-gray-200 px-2 py-1 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500"><a href="#"><i class="fa fa-linkedin"></i></a></div></div>
+                            </div>
+                     </div>
+                    <div class="flex justify-center px-4 md:px-24 lg:px-0">
+                        <div class="text-center bg-white lg:absolute lg:w-96 w-full lg:mx-4 -mt-20 py-4">
+                            <h4 class="inline-block border-b-2 border-gray-600 font-bold text-lg mt-2">Walter White</h4>
+                            <p class="text-sm mt-2"><i>Chief Executive Officer</i></p>
+                        </div>
+                    </div>
+                </div>
+                <div x-data="{open:false}">
+                    <div class="flex justify-center relative overflow-hidden hoverimage" @mouseover="open=true" @mouseover.outside="open=false">
+                        <img src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/team/team-2.jpg">
+                        <div class="absolute top-4 right-4 hoverlink animate__animated animate__slideInRight" x-show="open">
+                            <div class="py-1"><div class="text-gray-500 text-2xl bg-gray-200 px-2 py-1 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500"><a href="#"><i class="fa fa-twitter"></i></a></div></div>
+                            <div class="py-1"><div class="text-gray-500 text-2xl bg-gray-200 px-3 py-1 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500"><a href="#"><i class="fa fa-facebook"></i></a></div></div>
+                            <div class="py-1"><div class="text-gray-500 text-2xl bg-gray-200 px-2 py-1 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500"><a href="#"><i class="fa fa-instagram"></i></a></div></div>
+                            <div class="py-1"><div class="text-gray-500 text-2xl bg-gray-200 px-2 py-1 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500"><a href="#"><i class="fa fa-skype"></i></a></div></div>
+                            <div class="py-1"><div class="text-gray-500 text-2xl bg-gray-200 px-2 py-1 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500"><a href="#"><i class="fa fa-linkedin"></i></a></div></div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center px-4 md:px-24 lg:px-0">
+                        <div class="text-center bg-white lg:absolute lg:w-96 w-full lg:mx-4 -mt-20 py-4">
+                            <h4 class="inline-block border-b-2 border-gray-600 font-bold text-lg mt-2">Sarah Jhonson</h4>
+                            <p class="text-sm mt-2"><i>Product Manager</i></p>
+                        </div>
+                    </div>
+                </div>
+                <div x-data="{open:false}">
+                    <div class="flex justify-center relative overflow-hidden hoverimage" @mouseover="open=true" @mouseover.outside="open=false">
+                        <img src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/team/team-3.jpg">
+                        <div class="absolute top-4 right-4 hoverlink animate__animated animate__slideInRight" x-show="open">
+                            <div class="py-1"><div class="text-gray-500 text-2xl bg-gray-200 px-2 py-1 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500"><a href="#"><i class="fa fa-twitter"></i></a></div></div>
+                            <div class="py-1"><div class="text-gray-500 text-2xl bg-gray-200 px-3 py-1 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500"><a href="#"><i class="fa fa-facebook"></i></a></div></div>
+                            <div class="py-1"><div class="text-gray-500 text-2xl bg-gray-200 px-2 py-1 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500"><a href="#"><i class="fa fa-instagram"></i></a></div></div>
+                            <div class="py-1"><div class="text-gray-500 text-2xl bg-gray-200 px-2 py-1 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500"><a href="#"><i class="fa fa-skype"></i></a></div></div>
+                            <div class="py-1"><div class="text-gray-500 text-2xl bg-gray-200 px-2 py-1 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500"><a href="#"><i class="fa fa-linkedin"></i></a></div></div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center px-4 md:px-24 lg:px-0">
+                        <div class="text-center bg-white lg:absolute lg:w-96 w-full lg:mx-4 -mt-20 py-4">
+                            <h4 class="inline-block border-b-2 border-gray-600 font-bold text-lg mt-2">William Anderson</h4>
+                            <p class="text-sm mt-2"><i>CTO</i></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Clients-->
+    <div id="client" class="xl:px-28 px-6 md:px-8 lg:px-20">
+        <div class="text-center text-gray-600 pt-12">
+            <h1 class="text-3xl font-semibold">Clients</h1>
+            <p class="mt-4">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+        <div class="mt-12">
+            <div class="grid xl:grid-cols-4 md:grid-cols-2">
+                <div class="border px-28 py-10"><img class="hover:scale-125 transition ease-in-out duration-700" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/clients/client-1.png" alt="client-logo-img" width="120"></div>
+                <div class="border px-28 py-10"><img class="hover:scale-125 transition ease-in-out duration-700" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/clients/client-2.png" alt="client-logo-img" width="120"></div>
+                <div class="border px-28 py-10"><img class="hover:scale-125 transition ease-in-out duration-700" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/clients/client-3.png" alt="client-logo-img" width="120"></div>
+                <div class="border px-28 py-10"><img class="hover:scale-125 transition ease-in-out duration-700" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/clients/client-4.png" alt="client-logo-img" width="120"></div>
+                <div class="border px-28 py-10"><img class="hover:scale-125 transition ease-in-out duration-700" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/clients/client-5.png" alt="client-logo-img" width="120"></div>
+                <div class="border px-28 py-10"><img class="hover:scale-125 transition ease-in-out duration-700" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/clients/client-6.png" alt="client-logo-img" width="120"></div>
+                <div class="border px-28 py-10"><img class="hover:scale-125 transition ease-in-out duration-700" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/clients/client-7.png" alt="client-logo-img" width="120"></div>
+                <div class="border px-28 py-10"><img class="hover:scale-125 transition ease-in-out duration-700" src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/clients/client-8.png" alt="client-logo-img" width="120"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pricing -->
+    <div id="price" class="mt-12 xl:px-28 lg:px-20 bg-gray-100 px-6 md:px-8">
+        <div class="text-center text-gray-600 pt-20">
+            <h1 class="text-3xl font-semibold">Pricing</h1>
+            <p class="mt-4">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+        <div class="pb-3">
+            <div class="grid xl:grid-cols-4 md:grid-cols-2 py-12 gap-6">
+                <div class="bg-white text-center pt-10 pb-10 border">
+                    <div class="text-xl text-gray-600"><h5>Free</h5></div>
+                    <div class="mt-5"><p><sup class="text-sky-500 font-extrabold text-lg">$</sup><span class="text-sky-500 font-extrabold text-5xl">0</span><sub class="text-gray-400 text-lg">/ month</sub></p></div>
+                    <div class="mt-8 text-sm"><p>Aida dere</p></div>
+                    <div class="mt-4 text-sm"><p>Nec feugiat nisl</p></div>
+                    <div class="mt-4 text-sm"><p>Nulla at volutpat dola</p></div>
+                    <div class="mt-4 text-sm text-gray-400"><p><del>Pharetra massa</del></p></div>
+                    <div class="mt-4 text-sm text-gray-400"><p><del>Massa ultricies mi</del></p></div>
+                    <div class="mt-10 text-sm bg-sky-500 inline-block text-white rounded-sm"><button type="button" class="px-6 py-2 hover:bg-white hover:text-sky-500 border transition duration-500 ease-in-out">BUY NOW</button></div>
+                </div>
+                <div class="bg-sky-500 text-white text-center pt-10 pb-10 border">
+                    <div class="text-xl"><h5>Business</h5></div>
+                    <div class="mt-5"><p><sup class="font-extrabold text-lg">$</sup><span class="font-extrabold text-4xl">19</span><sub class="text-lg">/ month</sub></p></div>
+                    <div class="mt-8 text-sm"><p>Aida dere</p></div>
+                    <div class="mt-4 text-sm"><p>Nec feugiat nisl</p></div>
+                    <div class="mt-4 text-sm"><p>Nulla at volutpat dola</p></div>
+                    <div class="mt-4 text-sm"><p><del>Pharetra massa</del></p></div>
+                    <div class="mt-4 text-sm"><p><del>Massa ultricies mi</del></p></div>
+                    <div class="mt-10 text-sm bg-white text-sky-500 inline-block rounded-sm"><button type="button" class="px-6 py-2 hover:bg-sky-500 hover:text-white border transition ease-in-out duration-500">BUY NOW</button></div>
+                </div>
+                <div class="bg-white text-center pt-10 pb-10 border">
+                    <div class="text-xl text-gray-600"><h5>Developer</h5></div>
+                    <div class="mt-5"><p><sup class="text-sky-500 font-extrabold text-lg">$</sup><span class="text-sky-500 font-extrabold text-4xl">29</span><sub class="text-gray-400 text-lg">/ month</sub></p></div>
+                    <div class="mt-8 text-sm"><p>Aida dere</p></div>
+                    <div class="mt-4 text-sm"><p>Nec feugiat nisl</p></div>
+                    <div class="mt-4 text-sm"><p>Nulla at volutpat dola</p></div>
+                    <div class="mt-4 text-sm text-gray-400"><p><del>Pharetra massa</del></p></div>
+                    <div class="mt-4 text-sm text-gray-400"><p><del>Massa ultricies mi</del></p></div>
+                    <div class="mt-10 text-sm bg-sky-500 inline-block text-white rounded-sm"><button type="button" class="px-6 py-2 hover:bg-white hover:text-sky-500 border transition duration-500 ease-in-out">BUY NOW</button></div>
+                </div>
+                <div class="bg-white text-center pt-10 pb-10 border">
+                    <div class="text-xl text-gray-600"><h5>Ultimate</h5></div>
+                    <div class="mt-5"><p><sup class="text-sky-500 font-extrabold text-lg">$</sup><span class="text-sky-500 font-extrabold text-4xl">49</span><sub class="text-gray-400 text-lg">/ month</sub></p></div>
+                    <div class="mt-8 text-sm"><p>Aida dere</p></div>
+                    <div class="mt-4 text-sm"><p>Nec feugiat nisl</p></div>
+                    <div class="mt-4 text-sm"><p>Nulla at volutpat dola</p></div>
+                    <div class="mt-4 text-sm text-gray-400"><p><del>Pharetra massa</del></p></div>
+                    <div class="mt-4 text-sm text-gray-400"><p><del>Massa ultricies mi</del></p></div>
+                    <div class="mt-10 text-sm bg-sky-500 inline-block text-white rounded-sm"><button type="button" class="px-6 py-2 hover:bg-white hover:text-sky-500 border transition duration-500 ease-in-out">BUY NOW</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Contact Us-->
+    <div id="contact" class="lg:px-20 xl:px-28">
+        <div class="text-center text-gray-600 pt-20 px-6">
+            <h1 class="text-3xl font-semibold">Contact Us</h1>
+            <p class="mt-4">Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+        <div>
+            <div class="grid xl:grid-cols-5 py-12 gap-10">
+                <div class="bg-gray-100 xl:col-span-2 p-8 border">
+                    <div class="flex items-center">
+                        <div class="text-sky-500 text-2xl bg-white px-4 py-2 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500"><i class="fa fa-map-marker"></i></div>
+                        <div class="px-5">
+                            <h3 class="text-lg font-bold">Location:</h3>
+                            <p class="text-sm">A108 Adam Street, New York, NY 535022</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center mt-8">
+                        <div class="text-sky-500 text-lg bg-white px-3 py-2 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500"><i class="fa fa-envelope"></i></div>
+                        <div class="px-5">
+                            <h3 class="text-lg font-bold">Email:</h3>
+                            <p class="text-sm">info@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center mt-8">
+                        <div class="text-sky-500 text-2xl bg-white px-4 py-2 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500"><i class="fa fa-mobile"></i></div>
+                        <div class="px-5">
+                            <h3 class="text-lg font-bold">Call:</h3>
+                            <p class="text-sm">+1 5589 55488 55s</p>
+                        </div>
+                    </div>
+                    <div class="mt-8"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14418395.247352915!2d77.35588819872706!3d28.082003490019705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3994fb35beab27a5%3A0x92de245797a63af!2sBITS%20-Bitmap%20IT%20Solution%20Pvt.%20Ltd.!5e0!3m2!1sen!2snp!4v1653641460564!5m2!1sen!2snp" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+                </div>
+
+                <div class="bg-white border xl:col-span-3 py-10">
+                    <div class="grid grid-cols-2 px-7 gap-6 lg:pt-6">
+                        <div>
+                            <p>Your Name</p>
+                            <input type="text" class="border border-gray-300 w-full py-2.5 px-2">
+                        </div>
+                        <div>
+                            <p>Your Email</p>
+                            <input type="email" class="border border-gray-300 w-full py-2.5 px-2">
+                        </div>
+                    </div>
+                    <div class="px-7 mt-6">
+                        <p>Subject</p>
+                        <input type="text" class="border border-gray-300 w-full py-2.5 px-2">
+                    </div>
+                    <div class="px-7 mt-6">
+                        <p>Message</p>
+                        <textarea class="border border-gray-300 w-full h-64 p-2"></textarea>
+                    </div>
+                    <div class="text-center mt-4"><button type="button" class="rounded-md px-8 py-3 bg-sky-500 text-white text-sm font-semibold hover:bg-sky-600 transition duration-500 ease-in-out">Send Message</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Footer -->
+    <div class="xl:px-28 lg:px-20 px-6 bg-gray-100 mt-4 border-2 border-gray-200">
+        <div class="grid lg:grid-cols-4 py-16">
+            <div>
+                <h3 class="text-2xl font-bold">Scaffold</h3>
+                <p class="mt-4 text-sm">A108 Adam Street</p>
+                <p class="text-sm">NY 535022, USA</p>
+                <p class="mt-4 text-sm"><b>Phone:</b> +1 5589 55488 55</p>
+                <p class="text-sm"><b>Email:</b> info@example.com</p>
+                <div class="mt-4">
+                    <div class="text-gray-500 text-2xl bg-gray-200 px-2 py-1 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500 inline-block"><a href="#"><i class="fa fa-twitter"></i></a></div>
+                    <div class="text-gray-500 text-2xl bg-gray-200 px-3 py-1 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500 inline-block"><a href="#"><i class="fa fa-facebook"></i></a></div>
+                    <div class="text-gray-500 text-2xl bg-gray-200 px-2 py-1 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500 inline-block"><a href="#"><i class="fa fa-instagram"></i></a></div>
+                    <div class="text-gray-500 text-2xl bg-gray-200 px-2 py-1 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500 inline-block"><a href="#"><i class="fa fa-skype"></i></a></div>
+                    <div class="text-gray-500 text-2xl bg-gray-200 px-2 py-1 rounded-full hover:bg-sky-500 hover:text-white transition ease-in-out duration-500 inline-block"><a href="#"><i class="fa fa-linkedin"></i></a></div>
+                </div>
+            </div>
+
+            <div class="mt-8 lg:mt-0">
+                <h4 class="text-lg font-semibold">Useful Links</h4>
+                <div class="text-sm mt-4">
+                    <ul>
+                        <li class="mt-4 hover:text-sky-500 transition duration-500 ease-in-out"><a href="#"><i class="fa fa-angle-right px-2 text-sky-500"></i>Home</a></li>
+                        <li class="mt-4 hover:text-sky-500 transition duration-500 ease-in-out"><a href="#"><i class="fa fa-angle-right px-2 text-sky-500"></i>About us</a></li>
+                        <li class="mt-4 hover:text-sky-500 transition duration-500 ease-in-out"><a href="#"><i class="fa fa-angle-right px-2 text-sky-500"></i>Services</a></li>
+                        <li class="mt-4 hover:text-sky-500 transition duration-500 ease-in-out"><a href="#"><i class="fa fa-angle-right px-2 text-sky-500"></i>Terms of service</a></li>
+                        <li class="mt-4 hover:text-sky-500 transition duration-500 ease-in-out"><a href="#"><i class="fa fa-angle-right px-2 text-sky-500"></i>Privacy policy</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lg:-ml-10 mt-8 lg:mt-0">
+                <h4 class="text-lg font-semibold">Our Services</h4>
+                <div class="text-sm mt-4">
+                    <ul>
+                        <li class="mt-4 hover:text-sky-500 transition duration-500 ease-in-out"><a href="#"><i class="fa fa-angle-right px-2 text-sky-500"></i>Web Design</a></li>
+                        <li class="mt-4 hover:text-sky-500 transition duration-500 ease-in-out"><a href="#"><i class="fa fa-angle-right px-2 text-sky-500"></i>Web Development</a></li>
+                        <li class="mt-4 hover:text-sky-500 transition duration-500 ease-in-out"><a href="#"><i class="fa fa-angle-right px-2 text-sky-500"></i>Product Management</a></li>
+                        <li class="mt-4 hover:text-sky-500 transition duration-500 ease-in-out"><a href="#"><i class="fa fa-angle-right px-2 text-sky-500"></i>Marketing</a></li>
+                        <li class="mt-4 hover:text-sky-500 transition duration-500 ease-in-out"><a href="#"><i class="fa fa-angle-right px-2 text-sky-500"></i>Graphic Design</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lg:-ml-10 mt-8 lg:mt-0">
+                <h4 class="text-lg font-semibold">Our Newsletter</h4>
+                <p class="text-sm mt-4">Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                <div class="flex mt-4">
+                    <div class=""><input tyep="text" class="py-2 xl:px-10 border border-gray-200 rounded-bl-md rounded-tl-md"></div>
+                    <div><button type="button" class="px-4 py-2 bg-sky-500 text-white rounded-tr-md rounded-br-md hover:bg-sky-600 transition duration-500 ease-in-out">Subscribe</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center py-8">
+        <p class="text-sm">© Copyright <b>Scaffold.</b> All Rights Reserved</p>
+        <p class="text-xs mt-2">Designed by <span class="text-sky-500">Bitmap IT Solution Pvt. Ltd.</span></p>
+    </div>
+    <script>
+        const links = document.getElementById('.links');
+
+    </script>
+    <script>
+        const pcnavbar = document.getElementById('pcnav');
+        window.addEventListener('scroll', function(){
+            let scroll = this.scrollY;
+            (scroll>10) ? pcnavbar.classList.add('shadow-md') : (scroll<10) ? pcnavbar.classList.remove('shadow-md') : null;
+        });
+    </script>
+    <script>
+        const changeImg = document.getElementById('change-img');
+        const c_img = document.getElementById('c-img');
+        const c_img1 = document.getElementById('c-img1');
+        const c_img2 = document.getElementById('c-img2');
+        const cc_img = document.getElementById('cc-img');
+        c_img.addEventListener('click', ()=>{
+            changeImg.src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/features-2.png";
+        });
+        c_img1.addEventListener('click', ()=>{
+            changeImg.src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/features-3.png";
+        });
+        c_img2.addEventListener('click', ()=>{
+            changeImg.src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/features-4.png";
+        });
+        cc_img.addEventListener('click', ()=>{
+            changeImg.src="https://bootstrapmade.com/demo/templates/Scaffold/assets/img/features-1.png";
+        });
+    </script>
+    <script>
+        const swiper = new Swiper('.swiper', {
+            direction: 'horizontal',
+            loop:true,
+            autoplay: true,
+            watchSlidesProgress: true,
+            breakpoints: {
+                320: {
+                    slidesPerView: 1
+                },
+                768: {
+                    slidesPerView: 2
+                },
+                1440: {
+                    slidesPerView: 3
+                }
+            }
+        });
+    </script>
+    <script>
+        const mobNav = document.getElementById('mob-nav');
+        const bar = document.getElementById('bar');
+        const cancel = document.getElementById('cancel');
+        bar.addEventListener('click', ()=>{
+            mobNav.classList.remove('hidden');
+        })
+        cancel.addEventListener('click', ()=>{
+            mobNav.classList.add('hidden');
+        })
+    </script>
+    <script>
+        const anchorTags = document.querySelectorAll('a[href^="#"]'); //Selecting all <a href=""> links
+        for (let link of anchorTags) { // looping with all links
+            link.addEventListener('click', (e)=>{ //click event on the link
+                let targetValue = link.getAttribute('href'); //
+                let mainTarget = document.querySelector(targetValue) //same as selecting with id;
+                mainTarget.scrollIntoView({
+                    behavior: 'smooth', // for smooth scrollling
+                    block: 'start' // for coming through the start of the target element
+                })
+                history.pushState(null, null, mainTarget);
+                e.preventDefault();
+            });
+        }
+    </script>
+    
+</body>
+</html>
